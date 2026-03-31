@@ -18,7 +18,7 @@ Variable naming ပေးတဲ့အခါမှာ အောက်ပါ rules
 - Variable name က letter or `_` (underscore) နဲ့စသင့်တယ်
 - number နဲ့စလို့မရဘူး
 - Variable name မှာ `A-z`, `0-9`, `_` စတာတွေပဲပါလို့ရတယ်
-- Varable name တွေက case sensitive ဖြစ်တယ် (eg. `school`, `SCHOOL` က မတူညီတဲ့ varialbe တွေဖြစ်တယ်။)
+- Variable name တွေက case sensitive ဖြစ်တယ် (eg. `school`, `SCHOOL` က မတူညီတဲ့ varialbe တွေဖြစ်တယ်။)
 - Python ရဲ့ keyword တွေကိုပေးလို့မရဘူး
 
 > Valid Variable Name
@@ -34,7 +34,7 @@ myname2 = "Kyaw Kyaw"
 
 Python မှာ များသောအားဖြင့် snake case ကို အသုံးများတယ်
 
-> Invalid Varialbe Name
+> Invalid Variable Name
 
 ```python
 2myage = 10
