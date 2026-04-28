@@ -1,0 +1,27 @@
+ h1 {
+     font-size: 20px;
+     font-weight: 200;
+ }
+
+ #red-text {
+     color: red;
+ }
+
+ .blue-text {
+     color: blue;
+ }
+
+ .box {
+     width: 300px;
+     height: 300px;
+     border: 1px solid black;
+ }
+
+ .card {
+     width: 100px;
+     height: 100px;
+     border: 1px solid red;
+     margin-top: 20px;
+     margin-left: 20px;
+     padding: 30px;
+ }
