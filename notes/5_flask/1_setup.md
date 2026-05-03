@@ -26,6 +26,7 @@
    ```bash
    pip freeze > package.txt
    ```
+   ကိုယ်သွင်းခဲ့တဲ့ package တွေကိုမှတ်ထားတာဖြစ်တယ် နောက်ပိုင်းပြန်သွင်းရင် ဒီ file လေးကိုသုံး ပြီးသွင်းလိုက်လို့ရတယ်။
 
 5. Create an entry point of the application
 
