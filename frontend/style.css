@@ -22,6 +22,10 @@ body{
     gap: 20px;
 }
 
+.nav-menu > li > a{
+    text-decoration: none;
+}
+
 .main-content{
     width: 800px;
     margin: 0 auto;
@@ -37,8 +41,9 @@ body{
     flex-direction: column;
     margin-bottom: 15px;
 }
-.entry-form{
-    margin-top: 15px;
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .textbox{
     padding: 8px;
@@ -47,10 +52,48 @@ body{
 }
 .btn-group{
     display: flex;
+    gap: 10px;
 }
 .save-btn{
     padding: 10px 20px;
     border-radius: 5px;
     background-color: rgb(46, 46, 140);
     color: white;
+}
+
+.product-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.product-table td,th{
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc9c9;
+}
+
+.product-table th{
+    background-color: #a19ddd;
+    color: #305c48
+}
+
+.add-btn{
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: rgb(46, 46, 140);
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 150px;
+}
+
+.cancel-btn{    
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(189, 42, 54);
+    color: white;
+    text-decoration: none;
+}
+label{
+    margin-bottom: 10px;
 }
