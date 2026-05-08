@@ -1,7 +1,9 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,flash
 import business_logic.product_business_logic as product_bl
 
 app = Flask(__name__)
+
+app.secret_key="123"
 
 #mapping
 @app.route("/") #root 
@@ -14,6 +16,17 @@ def create_product():
     if request.method == "POST":
         name = request.form.get("name")
         price = request.form.get("price")
+        isValid = True
+        if(name == ""):
+            flash("Name required.")
+            isValid = False
+            
+        if(price == ""):
+            flash("Price required.")
+            isValid = False
+
+        if not isValid:
+            return redirect("/product")  
         product_bl.create_product(name,price)
         return redirect("/product_list")
 
@@ -26,11 +39,13 @@ def list_products():
 
 @app.route("/product/<index>",methods=["POST"])
 def delete_product(index):
+    index = int(index)
     product_bl.delete_product(index)
     return redirect("/product_list")
 
 @app.route("/product/edit/<index>", methods=["GET","POST"])
 def edit_product(index):
+    index = int(index)
     current = product_bl.get_product_by_index(index)
     if request.method == "GET":        
         return render_template("product_edit.html",current=current,index = index)

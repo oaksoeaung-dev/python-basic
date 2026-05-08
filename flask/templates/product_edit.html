@@ -3,15 +3,22 @@
 {% block title%}Edit{% endblock%}
 
 {% block body%} 
-
-<form method="post" action="/product/edit/{{index}}">
-    <p>Name</p>
-    <input name="name" type="text" value="{{ current.name }}">
-    <br>
-    <p>Price</p>
-    <input name="price" type="number"  value="{{ current.price }}">
-    <br>
-    <input type="submit" value="Save">
-</form>
-
+<div class="card">
+    <h3>Product Entry</h3>
+    <hr>
+    <form class="entry-form" method="post" action="/product/edit/{{index}}">
+        <div class="input-group">
+            <label for="name">Product Name</label>
+            <input type="text" name="name" class="textbox" value="{{ current.name }}">
+        </div>
+        <div class="input-group">
+            <label for="price">Product Price</label>
+            <input type="text" name="price" class="textbox" value="{{ current.price }}">
+        </div>
+        <div class="btn-group">
+            <button class="save-btn" type="submit">Save</button>
+             <a href="/product_list" class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
  {% endblock%}
