@@ -5,7 +5,12 @@ def create_product(name,price):
     #validation
     #Is it existing product?
     #Is it correct price?
+    price = int(price)
+    if price <= 0 :
+        return False,"Price cannot be zero or negative value."
+    
     product_da.create_product(name,price)
+    return True,""
 
 #Retrieve
 def get_products():
