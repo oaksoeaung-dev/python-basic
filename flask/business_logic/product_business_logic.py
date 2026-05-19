@@ -16,17 +16,17 @@ def create_product(name,price):
 def get_products():
     return product_da.get_products()
 
-def get_product_by_index(index):
+def get_product_by_Id(Id):
     #correct index, number?
     #is index in correct range?
-    return product_da.get_product_by_index(index)
+    return product_da.get_product_by_Id(Id)
 
 #Update
-def update_product(index,name,price):
+def update_product(id,name,price):
     #validation
-    product_da.update_product(index,name,price)
+    product_da.update_product(id,name,price)
 
 #Delete
-def delete_product(index):
+def delete_product(id):
     #validation
-    product_da.delete_product(index)
+    product_da.delete_product(id)

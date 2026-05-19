@@ -33,20 +33,20 @@ def list_products():
     products = product_bl.get_products()
     return render_template("product_list.html",proudct_list=products)
 
-@product_bp.route("/product/<index>",methods=["POST"])
-def delete_product(index):
-    index = int(index)
-    product_bl.delete_product(index)
+@product_bp.route("/product/<id>",methods=["POST"])
+def delete_product(id):
+    id = int(id)
+    product_bl.delete_product(id)
     return redirect("/product_list")
 
-@product_bp.route("/product/edit/<index>", methods=["GET","POST"])
-def edit_product(index):
-    index = int(index)
-    current = product_bl.get_product_by_index(index)
+@product_bp.route("/product/edit/<id>", methods=["GET","POST"])
+def edit_product(id):
+    id = int(id)
+    current = product_bl.get_product_by_Id(id)
     if request.method == "GET":        
-        return render_template("product_edit.html",current=current,index = index)
+        return render_template("product_edit.html",current=current)
     else:
         name = request.form.get("name")
         price = request.form.get("price")
-        product_bl.update_product(index,name,price)
+        product_bl.update_product(id,name,price)
         return redirect("/product_list")

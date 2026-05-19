@@ -6,14 +6,14 @@
 <div class="card">
     <h3>Product Entry</h3>
     <hr>
-    <form class="entry-form" method="post" action="/product/edit/{{index}}">
+    <form class="entry-form" method="post" action="/product/edit/{{current.id}}">
         <div class="input-group">
             <label for="name">Product Name</label>
-            <input type="text" name="name" class="textbox" value="{{ current.name }}">
+            <input type="text" name="name" class="textbox" value="{{ current.name }}"/>
         </div>
         <div class="input-group">
             <label for="price">Product Price</label>
-            <input type="text" name="price" class="textbox" value="{{ current.price }}">
+            <input type="text" name="price" class="textbox" value="{{ current.price }}"/>
         </div>
         <div class="btn-group">
             <button class="save-btn" type="submit">Save</button>
