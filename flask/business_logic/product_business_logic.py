@@ -1,32 +1,42 @@
-import data_access.product_data_access as product_da #dependency
+from data_access.product_data_access import ProductDataAccess #dependency
+from models.product import Proudct
 
-#Create
-def create_product(name,price):
-    #validation
-    #Is it existing product?
-    #Is it correct price?
-    price = int(price)
-    if price <= 0 :
-        return False,"Price cannot be zero or negative value."
-    
-    product_da.create_product(name,price)
-    return True,""
+class ProductBusinessLogic:
+    def __init__(self):
+        self.da = ProductDataAccess()
 
-#Retrieve
-def get_products():
-    return product_da.get_products()
+    #Create
+    def create_product(self,product:Proudct):
+        #validation
+        #Is it existing product?
+        #Is it correct price?
+        success,message =  product.validate()
+        if not success:
+            return success,message
 
-def get_product_by_Id(Id):
-    #correct index, number?
-    #is index in correct range?
-    return product_da.get_product_by_Id(Id)
+        self.da.create_product(product)        
+        return True,None
 
-#Update
-def update_product(id,name,price):
-    #validation
-    product_da.update_product(id,name,price)
+    #Retrieve
+    def get_products(self):
+        return self.da.get_products()
 
-#Delete
-def delete_product(id):
-    #validation
-    product_da.delete_product(id)
+    def get_product_by_Id(self,Id):
+        #correct index, number?
+        #is index in correct range?
+        return self.da.get_product_by_Id(Id)
+
+    #Update
+    def update_product(self,product:Proudct):
+        #validation
+        success,message =  product.validate()
+        if not success:
+            return success,message
+        
+        self.da.update_product(product)
+        return True,None
+
+    #Delete
+    def delete_product(self,id):
+        #validation
+        self.da.delete_product(id)

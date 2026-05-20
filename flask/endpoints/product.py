@@ -1,28 +1,22 @@
 from flask import Blueprint,render_template,request,redirect,flash
-import business_logic.product_business_logic as product_bl
+from business_logic.product_business_logic import ProductBusinessLogic
+from models.product import Proudct
 
 product_bp = Blueprint("product",__name__)
+product_bl = ProductBusinessLogic()
 
 @product_bp.route("/product",methods=["GET","POST"])
 def create_product():
     if request.method == "POST":
         name = request.form.get("name")
-        price = request.form.get("price")
-        isValid = True
-        if(name == ""):
-            flash("Name required.")
-            isValid = False
-            
-        if(price == ""):
-            flash("Price required.")
-            isValid = False
+        price = request.form.get("price") 
+        price = int(price)       
+        product = Proudct(name,price)
 
-        if not isValid:
-            return redirect("/product")  
-        success,message = product_bl.create_product(name,price)
+        success,message = product_bl.create_product(product)
         if not success:
             flash(message)
-            return redirect("/product")  
+            return ("/product")  
 
         return redirect("/product_list")
 
@@ -48,5 +42,13 @@ def edit_product(id):
     else:
         name = request.form.get("name")
         price = request.form.get("price")
-        product_bl.update_product(id,name,price)
+        price = int(price) 
+        product = Proudct(name,price)
+        product.Id = id
+
+        success,message = product_bl.update_product(product)
+        if not success:
+            flash(message)  
+            return render_template("product_edit.html",current=product) 
+        
         return redirect("/product_list")

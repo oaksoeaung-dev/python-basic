@@ -1,50 +1,57 @@
 import sqlite3
+from models.product import Proudct
 
-DATABASE = "appdb.db"
+class ProductDataAccess:
+    def __init__(self):
+        self.__DATABASE = "appdb.db"
 
-def create_connection():
-    conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row
-    return conn
+    def __create_connection(self):
+        conn = sqlite3.connect(self.__DATABASE)
+        conn.row_factory = sqlite3.Row
+        return conn
 
-#Create
-def create_product(name,price):
-    with create_connection() as con:
-        con.execute("""
-insert into product 
-(name,price)
-values
-(?,?)""",(name,price))        
-        con.commit() #send to database
+    #Create
+    def create_product(self, product:Proudct):
+        with self.__create_connection() as con:
+            con.execute("""
+    insert into product 
+    (name,price)
+    values
+    (?,?)""",(product.name,product.price))        
+            con.commit() #send to database
 
-#Retrieve
-def get_products():
-    #products = []
-    with create_connection() as con:
-        cursor = con.execute("select * from product")
-        return cursor.fetchall()
-        # result = cursor.fetchall()
-        # for row in result:
-        #     products.append({"id":row["Id"],"name":row["name"],"price":row["price"]})
+    #Retrieve
+    def get_products(self) -> list[Proudct]:
+        product_list = []
+        with self.__create_connection() as con:
+            cursor = con.execute("select * from product")
+            result = cursor.fetchall()
+            for row in result:
+                product = Proudct()
+                product.map(row)
+                product_list.append(product)
 
-    #return products
+        return product_list
 
-def get_product_by_Id(Id):
-    with create_connection() as con:
-        cursor = con.execute("select * from product where Id = ?",(Id,))
-        return cursor.fetchone()
+    def get_product_by_Id(self,Id):
+        with self.__create_connection() as con:
+            cursor = con.execute("select * from product where Id = ?",(Id,))
+            result = cursor.fetchone()
+            product = Proudct()
+            product.map(result)
+            return product
 
-#Update
-def update_product(Id,name,price):
-    with create_connection() as con:
-        con.execute(""" 
-                    update product 
-                    set 
-                    name = ?,
-                    price = ?
-                    where Id = ? """,(name,price,Id))
+    #Update
+    def update_product(self,product:Proudct):
+        with self.__create_connection() as con:
+            con.execute(""" 
+                        update product 
+                        set 
+                        name = ?,
+                        price = ?
+                        where Id = ? """,(product.name,product.price,product.Id))
 
-#Delete
-def delete_product(Id):
-    with create_connection() as con:
-        con.execute("delete from product where Id = ?",(Id,))
+    #Delete
+    def delete_product(self,Id):
+        with self.__create_connection() as con:
+            con.execute("delete from product where Id = ?",(Id,))
