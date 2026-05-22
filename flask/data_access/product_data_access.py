@@ -13,7 +13,7 @@ class ProductDataAccess:
     #Create
     def create_product(self, product:Proudct):
         with self.__create_connection() as con:
-            con.execute("""
+            con.execute(f"""
     insert into product 
     (name,price)
     values
@@ -33,7 +33,7 @@ class ProductDataAccess:
 
         return product_list
 
-    def get_product_by_Id(self,Id):
+    def get_product_by_Id(self,Id) -> Proudct:
         with self.__create_connection() as con:
             cursor = con.execute("select * from product where Id = ?",(Id,))
             result = cursor.fetchone()

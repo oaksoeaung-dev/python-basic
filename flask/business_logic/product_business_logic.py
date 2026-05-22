@@ -13,7 +13,7 @@ class ProductBusinessLogic:
         success,message =  product.validate()
         if not success:
             return success,message
-
+        
         self.da.create_product(product)        
         return True,None
 
