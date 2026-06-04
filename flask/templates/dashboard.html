@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title%}Dashboard{% endblock%}
+
+{% block body%}
+<div class="card">
+    <h3>Welcome, {{ username }}!</h3>
+    <hr>
+    <p>Your role: <strong>{{ role }}</strong></p>
+    <br>
+    <a href="/logout" class="cancel-btn">Logout</a>
+</div>
+{% endblock %}
